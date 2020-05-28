@@ -1,0 +1,143 @@
+# Ignore everything
+*
+/*.DS_Store
+
+# Don't ignore directories, so we can recurse into them
+!*/
+
+# Ignore Tmp
+/Build/Bin_tmp/**
+/Build/Build_tmp/**
+/Build/Bin_const/**
+
+# Java workspace
+**/.metadata/**
+**/RemoteSystemsTempFiles/**
+
+# Don't ignore .gitignore
+!.gitignore
+
+# Don't ignore sources
+!*.c
+!*.cc
+!*.cpp
+!*.cmm
+!*.m
+!*.cxx
+!*.h
+!*.hpp
+!*.hxx
+!*.java
+!*.properties
+!*.js
+!*.sln
+!*.def
+!*.vcxproj.
+!*.vcxproj.filters
+!*.rc
+!*.idl
+!*.xml
+!*.py
+!*.proj
+!*.sh
+!*.sh.*
+!*.elay
+!*.make
+!*.ebp
+!*.ld
+!*.S
+!*.s
+!*.asm
+!*.ASM
+!*.qml
+!*.qmlproject
+!Makefile
+
+#
+!*.jar
+
+# Don't ignore thrift
+!*.thrift
+
+# Don't ignore protobuf
+!*.proto
+!*.proto2
+!*.proto3
+
+# Don't ignore pojects
+!.project
+!*.pro
+
+# Don't ignore Qt UI
+!*.ui
+
+# Don't ignore android
+!*.mk
+
+# Don't ignore config
+!*.cfg
+!*.conf
+!*.config
+!*.ini
+!*.INI
+
+# Don't ignore scripts
+!*.sh
+
+# Don't ignore ssl
+!*.pem
+
+# Don't ignore resources
+!*.fanim
+!*.fskel
+!*.cond
+!*.json
+!*.glfs
+!*.glvs
+!*.glgs
+!*.shader
+!*.material
+!*.texture
+!*.renderbuff
+!*.pgen
+!*.pup
+!*.fphys
+!*.scene
+!*.xml
+!*.odt
+!*.pdf
+!*.txt
+!*.qml
+!*.docx
+!*.xls
+!*.xlsx
+!*.doc
+!*.sdl
+!*.zip
+!*.rar
+!*.qrc
+!*.png
+!*.html
+!*.htm
+!*.csv
+!*.zip
+!*.7z
+!*.dbf
+!*.prj
+!*.qpj
+!*.shp
+!*.shx
+!*.gz
+!*.raw
+!*.route
+!*.pg_dump
+!*.sql
+!*.pg_dump
+!*.bin
+!*.scn
+
+# Don't ignore DIY layouts
+!*.lay6
+!*.gbr
+
+moc_*.cpp
