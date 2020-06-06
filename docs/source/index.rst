@@ -6,6 +6,9 @@
 Welcome to Semux Light Core Webassembly's documentation!
 ========================================================
 
+This project is a **web assembly** version of the **Semux light core library** (written in C++)
+for the ability to work with Semux cryptographic functions in JavaScript projects.
+
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
@@ -18,9 +21,6 @@ Welcome to Semux Light Core Webassembly's documentation!
    usage/TransactionSign
    usage/TransactionType
 
-
-This project is a web assembly version of the Semux light core library (written in C++)
-for the ability to work with Semux cryptographic functions in JavaScript projects.
 
 Indices and tables
 ==================

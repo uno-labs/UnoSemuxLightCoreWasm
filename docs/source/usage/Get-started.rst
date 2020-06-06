@@ -1,23 +1,48 @@
 Get started
 ===========
 
+Important notes
+---------------
+
+Some functions are *static*
+and can be called without creating an object. Like that:
+
+.. code-block:: html
+
+   var result = Module.<UnoSemuxSomeClass>.<someStaticFunctionName>();
+
+Other functions are members of some classes. And first you have to create a class
+and then to call its method:
+
+.. code-block:: html
+
+   var myClass = new Module.<UnoSemuxSomeClass>;
+   var result = myClass.<someMethod>;
+
+All functions return a result object that always has two important fields -
+**error** and **res**:
+
+- `result.error` - if successful, takes an `undefined` value;
+- `result.res` -  consists the result.
+
 Typical usage
 -------------
 
-First of all you have to include corresponding JS-library into your html page:
+First of all you have to include corresponding JavaScript library into your HTML page:
 
 .. code-block:: html
 
    <script src="UnoSemuxLightCoreWasm.js"></script>
 
 
-Generating mnemonic phrase
+Mnemonic phrase generation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. code-block:: html
 
    <script>
        function NewMnemonicPhrase() {
+
            var mnemonic_rs = Module.UnoSemuxAccountHD.sNewMnemonic();
 
            if (typeof mnemonic_rs.error != "undefined") {
@@ -26,22 +51,21 @@ Generating mnemonic phrase
            }
 
            console.log("New mnemonic phrase '" + mnemonic_rs.res + "'");
-
-           document.getElementById("mnemonic_phrase_source").value = mnemonic_rs.res;
        }
    </script>
 
 
-Importing the mnemonic phrase
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Import mnemonic phrase
+~~~~~~~~~~~~~~~~~~~~~~
 
 .. code-block:: html
 
    <script>
        function ImportMnemonicPhrase() {
+
            //Mnemonic
-           var mnemonic = document.getElementById("mnemonic_phrase_source").value;
-           var password = "";//optional
+           var mnemonic = prompt("Please enter your phrase ");
+           var password = "";  //optional
 
            console.log("HD mnemonic phrase '" + mnemonic + "', password = '" + password + "'");
 
@@ -75,8 +99,91 @@ Importing the mnemonic phrase
 
            var addr_str_hex = addr_str_hex_rs.res;
 
-           console.log("New address: " + addr_str_hex);
-
-           document.getElementById("hd_address_source").value = "0x" + addr_str_hex;
+           console.log("New address: " + "0x" + addr_str_hex);
        }
    </script>
+
+Transaction signature
+~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: html
+
+    <script>
+        function SignTransaction() {
+
+            console.log("New transaction...");
+
+            var d = new Date();
+
+            var network = document.getElementById("transaction_network_source").value;
+            var type = document.getElementById("transaction_type_source").value;
+            var to = document.getElementById("transaction_to_source").value;
+            var value = document.getElementById("transaction_value_source").value;
+            var fee = document.getElementById("transaction_fee_source").value;
+            var nonce = document.getElementById("transaction_nonce_source").value;
+            var data = document.getElementById("transaction_data_source").value;
+            var gas = document.getElementById("transaction_gas_source").value;
+            var gas_price = document.getElementById("transaction_gas_price_source").value;
+
+            var network_type = Module.UnoSemuxNetworkType.TESTNET;
+            if (network == "MAINNET") network_type = Module.UnoSemuxNetworkType.MAINNET;
+            else network_type = Module.UnoSemuxNetworkType.TESTNET;
+
+            var transaction_type = Module.UnoSemuxTransactionType.COINBASE;
+            if (type == "TRANSFER") transaction_type = Module.UnoSemuxTransactionType.TRANSFER;
+            else if (type == "DELEGATE") transaction_type = Module.UnoSemuxTransactionType.DELEGATE;
+            else if (type == "VOTE") transaction_type = Module.UnoSemuxTransactionType.VOTE;
+            else if (type == "UNVOTE") transaction_type = Module.UnoSemuxTransactionType.UNVOTE;
+            else if (type == "CREATE") transaction_type = Module.UnoSemuxTransactionType.CREATE;
+            else if (type == "CALL") transaction_type = Module.UnoSemuxTransactionType.CALL;
+
+            var transaction_rs = new Module.UnoSemuxTransaction.sNew(network_type,
+                transaction_type,
+                String(to),
+                String(value),
+                String(fee),
+                String(nonce),
+                String(d.getTime()),
+                String(data),
+                String(gas),
+                String(gas_price));
+
+
+            if (typeof transaction_rs.error != "undefined") {
+                console.log(transaction_rs.error);
+                return;
+            }
+
+            var transaction = transaction_rs.res;
+
+            console.log("Sign transaction...");
+            var sign_rs = window.next_hd_addr.sign1(transaction);
+
+            if (typeof sign_rs.error != "undefined") {
+                console.log(sign_rs.error);
+                return;
+            }
+
+            var sign = sign_rs.res;
+
+            var sign_tx_hash_rs = sign.txHash();
+
+            if (typeof sign_tx_hash_rs.error != "undefined") {
+                console.log(sign_tx_hash_rs.error);
+                return;
+            }
+            console.log("Transaction hash '" + sign_tx_hash_rs.res + "'");
+
+            var sign_encode_rs = sign.encode()
+
+            if (typeof sign_encode_rs.error != "undefined") {
+                console.log(sign_encode_rs.error);
+                return;
+            }
+
+            console.log("Transaction sign hex str '" + sign_encode_rs.res + "'");
+
+            document.getElementById("transaction_hash_source").value = sign_tx_hash_rs.res;
+            document.getElementById("sign_source").value = sign_encode_rs.res;
+        }
+    </script>
