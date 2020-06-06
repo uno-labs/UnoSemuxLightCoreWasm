@@ -14,7 +14,7 @@ First of all you have to include corresponding JS-library into your html page:
 Generating mnemonic phrase
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. code-block:: javascript
+.. code-block:: html
 
    <script>
        function NewMnemonicPhrase() {
@@ -35,7 +35,7 @@ Generating mnemonic phrase
 Importing the mnemonic phrase
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. code-block:: js
+.. code-block:: html
 
    <script>
        function ImportMnemonicPhrase() {
