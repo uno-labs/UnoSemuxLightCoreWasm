@@ -1,4 +1,7 @@
 TransactionSign class
 =====================
 
-About TransactionSign class and its methods.
+.. js:class:: TransactionSign
+
+   About `TransactionSign` class and its methods.
+

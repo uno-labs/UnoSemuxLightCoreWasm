@@ -1,4 +1,7 @@
 NetworkType class
 =================
 
-About NetworkType class and its methods.
+.. js:class:: NetworkType
+
+   About class `NetworkType`.
+

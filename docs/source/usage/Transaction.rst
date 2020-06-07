@@ -1,4 +1,7 @@
 Transaction class
 =================
 
-About Transaction class and its methods.
+.. js:class:: Transaction
+
+   About `Transaction` class and its methods.
+

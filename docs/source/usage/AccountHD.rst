@@ -1,99 +1,106 @@
 AccountHD class
 ===============
 
-The `AccountHD` class and its methods.
+.. js:class:: AccountHD
 
-An object of this class is not created using the ``new`` operator,
-but is returned by a static function ``sImportFromMnemonic`` importing a mnemonic phrase.
+   An object of this class is not created using the ``new`` operator,
+   but is returned by the static function :js:func:`sImportFromMnemonic` importing a `mnemonic phrase`.
 
+   .. note::
+      The concept of `HD Address` means an object of the :js:class:`Addr` class, which is essentially a key pair.
 
 Static methods
 --------------
 
-- ``sNewMnemonic()`` - generates a new mnemonic phrase.
+.. js:function:: sNewMnemonic()
 
-Returns ``string`` containing generated `mnemonic phrase`. Usage:
+   :returns: A ``string`` containing generated mnemonic phrase.
 
-.. code-block:: html
+   | Generates a new mnemonic phrase.
+   | Example:
 
-  <script>
+   .. code-block:: javascript
+
       var mnemonic_rs = Module.UnoSemuxAccountHD.sNewMnemonic();
 
       if (typeof mnemonic_rs.error != "undefined") {
           console.log(mnemonic_rs.error);
-          return;
+      } else {
+          console.log("New mnemonic phrase '" + mnemonic_rs.res + "'");
       }
 
-      console.log("New mnemonic phrase '" + mnemonic_rs.res + "'");
-  </script>
 
-|
+.. js:function:: sImportFromMnemonic(mnemonic, password)
 
-- ``sImportFromMnemonic(mnemonicStr, passwordStr)`` - imports the mnemonic phrase (with optional password).
+   :param string mnemonic: A mnemonic phrase.
+   :param string password: A password (can be empty).
+   :returns: An ``object`` of :js:class:`AccountHD` class.
 
-Returns an ``object`` of :doc:`AccountHD`. After that, you can get a sequence of key pairs. Usage:
+   | Checks for control sum and imports a mnemonic phrase.
+   | This is essentially a factory method for instantiating an object of :js:class:`AccountHD` class.
+   | Using returned object you can further create a sequence of key pairs (objects of :js:class:`Addr` class).
+   | Example:
 
-.. code-block:: html
+   .. code-block:: javascript
 
-  <script>
       function ImportMnemonicPhrase() {
 
-          //Mnemonic
-          var mnemonic = prompt("Please enter your phrase ");
-          var password = "";  //optional
+          var mnemonic = prompt("Please enter your mnemonic phrase: ");
+          var password = "";  // optional
 
-          console.log("HD mnemonic phrase '" + mnemonic + "', password = '" + password + "'");
-
-          //Import HD
+          // Import mnemonic phrase (transform it into AccountHD)
           var account_hd_rs = Module.UnoSemuxAccountHD.sImportFromMnemonic(mnemonic, password);
 
           if (typeof account_hd_rs.error != "undefined") {
+              // If check of mnemonic phrase fails
               console.log(account_hd_rs.error);
-              return;
+          } else {
+              var account_hd = account_hd_rs.res;
           }
 
-          var account_hd = account_hd_rs.res;
-  </script>
-
-|
 
 Class methods
 -------------
 
-- ``addrAddNextHD()`` - derives the next key pair from the account.
+.. js:function:: addrAddNextHD()
 
-Returns an ``object`` of :doc:`Addr`. Usage:
+   :returns: An ``object`` of :js:class:`Addr` class.
 
-.. code-block:: html
+   | Derives the next key pair (HD Address) from the `account`.
+   | Example:
 
-  <script>
-      //Generate next HD address
-      console.log("Add next HD address...");
+   .. code-block:: javascript
+
+      // Generate the next HD address
       var next_hd_addr_rs = account_hd.addrAddNextHD();
 
       if (typeof next_hd_addr_rs.error != "undefined") {
           console.log(next_hd_addr_rs.error);
-          return;
+      } else {
+          var next_hd_addr = next_hd_addr_rs.res;
       }
 
-      window.next_hd_addr = next_hd_addr_rs.res;
-  </script>
 
-|
+.. js:function:: addrFindByName(name)
 
-- ``addrFindByName(strName)`` - find an address by its name.
+   :param string name: A name of an address.
+   :returns: An ``object`` of :js:class:`Addr` class.
 
-Returns an ``object`` of :doc:`Addr`.
+   | Finds an address by its name.
 
-|
 
-- ``addrFindByHexStr(strHex)`` - find an address by its HEX representation.
+.. js:function:: addrFindByHexStr(hex)
 
-Returns an ``object`` of :doc:`Addr`.
+   :param string hex: A hex form of an address.
+   :returns: An ``object`` of :js:class:`Addr` class.
 
-|
+   | Finds an address by its HEX representation.
 
-- ``addrHexStrByName(strAddressName)`` - returns the HEX representation of an address by its name.
 
-Returns a ``string`` containing the HEX representation of an address.
+.. js:function:: addrHexStrByName(addressName)
+
+   :param string addressName: A name of an address.
+   :returns: A ``string`` containing the HEX representation of an address.
+
+   | Returns the HEX representation of an address by its name.
 

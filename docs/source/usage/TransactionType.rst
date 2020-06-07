@@ -1,4 +1,7 @@
 TransactionType class
 =====================
 
-About TransactionType class and its methods.
+.. js:class:: TransactionType
+
+   About `TransactionType` class and its methods.
+

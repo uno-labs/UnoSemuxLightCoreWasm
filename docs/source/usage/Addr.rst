@@ -1,74 +1,86 @@
 Addr class
 ==========
 
-The `Addr` class and its methods.
+.. js:class:: Addr
+
+   This class is designed to work with a specific key pair (not with an HD wallet).
+
+   .. note::
+      The concept of `HD Address` means an object of the :js:class:`Addr` class, which is essentially a key pair.
 
 
 Static methods
 --------------
 
-- ``sImportPrivateKeyStrHex(strHexPrivate)`` - imports a private key.
+.. js:function:: sImportPrivateKeyStrHex(hexPrivate)
 
-Returns an ``object`` of :doc:`Addr`.
+   :param string hexPrivate: A HEX form of an importing private key.
+   :returns: An ``object`` of :js:class:`Addr` class.
 
-|
+   | Imports a private key.
 
-- ``sGenerateNew()`` - generates a new key pair.
 
-Returns an `object` of :doc:`Addr`.
+.. js:function:: sGenerateNew()
+
+   :returns: An ``object`` of :js:class:`Addr` class.
+
+   | Generates a new key pair.
 
 
 Class methods
 -------------
 
-- ``addrStrHex()`` - returns the HEX representation of itself.
+.. js:function:: addrStrHex()
 
-Returns ``string`` containing HEX representation of itself. Usage:
+   :returns: A ``string`` containing HEX representation of itself.
 
-.. code-block:: html
+   | Method to get the HEX representation of itself.
+   | Example:
 
-  <script>
-      //Get address as str hex
-      var addr_str_hex_rs = window.next_hd_addr.addrStrHex();
+   .. code-block:: javascript
+
+      // Get address as str hex
+      var addr_str_hex_rs = next_hd_addr.addrStrHex();
 
       if (typeof addr_str_hex_rs.error != "undefined") {
           console.log(addr_str_hex_rs.error);
-          return;
+      } else {
+          var addr_str_hex = addr_str_hex_rs.res;
+          console.log("HEX address: " + "0x" + addr_str_hex);
       }
 
-      var addr_str_hex = addr_str_hex_rs.res;
 
-      console.log("HEX address: " + "0x" + addr_str_hex);
-  </script>
+.. js:function:: sign1(transaction)
 
-|
+   :param transaction: An object of :js:class:`Transaction` class.
+   :returns: An ``object`` of :js:class:`TransactionSign` class.
 
-- ``sign1(objectTransaction)`` - performs a signature of a :doc:`Transaction` object.
+   | Performs a signature of a :js:class:`Transaction` object.
+   | Example:
 
-Returns an ``object`` of :doc:`TransactionSign`. Usage:
+   .. code-block:: javascript
 
-.. code-block:: html
-
-  <script>
-      var sign_rs = window.next_hd_addr.sign1(transaction);
+      var sign_rs = next_hd_addr.sign1(transaction);
 
       if (typeof sign_rs.error != "undefined") {
           console.log(sign_rs.error);
-          return;
+      } else {
+          var sign = sign_rs.res;
       }
 
-      var sign = sign_rs.res;
-  </script>
 
-|
+.. js:function:: sign2(transaction)
 
-- ``sign2(objectTransaction)`` - performs a signature of a :doc:`Transaction` object. It's similar to ``sing1`` method.
+   :param transaction: An object of :js:class:`Transaction` class.
+   :returns: An ``object`` of :js:class:`TransactionSign` class.
 
-Returns an ``object`` of :doc:`TransactionSign`.
+   | Performs a signature of a :js:class:`Transaction` object. It's similar to :js:func:`sign1` method.
 
-|
 
-- ``setNonce(strNonce)`` - set the nonce for this address.
+.. js:function:: setNonce(nonce)
 
-Returns ``void``.
+   :param string nonce: A `nonce`.
+   :returns: ``void``.
+
+   | Set the nonce for this address.
 

@@ -15,8 +15,8 @@ It should have the following main features:
 
 Semux uses cryptography on elliptic curves ed25519, and this is why you can’t use
 standard Web Crypto API present in modern browsers.
-The libSodium library is most suitable for implementing the algorithms used in Semux.
-This library makes heavy use of libSodium.
+The `libSodium` library is most suitable for implementing the algorithms used in Semux.
+This project makes heavy use of the libSodium.
 
 You can read more about the HD Wallets at the following links:
 
@@ -31,7 +31,7 @@ You can read more about the HD Wallets at the following links:
 Installation
 ------------
 
-To build the project, QMAKE and EMSCRIPTEN compiler are used. The build process is quite complicated,
+To build the project, QMake and EMSCRIPTEN compiler are used. The build process is quite complicated,
 so the compiled files are laid out in the assets at the `release section <https://github.com/uno-labs/semux-light-core-wasm/releases>`_.
 
 Download an archive ``uno_semux_light_core.tar.gz`` from assets on release page of this project.

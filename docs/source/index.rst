@@ -6,7 +6,7 @@
 Welcome to Semux Light Core Webassembly's documentation!
 ========================================================
 
-This project is a **web assembly** version of the
+This project is a **WebAssembly** version of the
 `Semux light core library <https://github.com/uno-labs/semux-light-core>`_ 
 (written in C++, based on `libSodium <https://github.com/jedisct1/libsodium>`_)
 for the ability to work with Semux cryptographic functions in JavaScript projects.

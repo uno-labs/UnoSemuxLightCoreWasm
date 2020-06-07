@@ -1,5 +1,5 @@
-Get started
-===========
+Getting started
+===============
 
 Important notes
 ---------------
@@ -11,8 +11,9 @@ and can be called without creating an object. Like that:
 
    var result = Module.<UnoSemuxSomeClass>.<someStaticFunctionName>();
 
-Other functions are members of some classes. And first you have to create a class
-and then to call its method:
+Other functions are members of some classes. 
+At first you have to create an object of certain class
+and then to call its methods:
 
 .. code-block:: javascript
 
@@ -23,12 +24,12 @@ All functions return a result object that always has two important fields -
 ``error`` and ``res``:
 
 - ``result.error`` - if successful, takes an ``undefined`` value;
-- ``result.res`` -  consists the result.
+- ``result.res`` -  contains the result.
 
 Typical usage
 -------------
 
-First of all you have to include corresponding JavaScript library into your HTML page:
+First of all you have to include corresponding JavaScript file into your HTML page:
 
 .. code-block:: html
 
