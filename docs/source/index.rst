@@ -6,13 +6,18 @@
 Welcome to Semux Light Core Webassembly's documentation!
 ========================================================
 
-This project is a **web assembly** version of the **Semux light core library** (written in C++)
+This project is a **web assembly** version of the
+`Semux light core library <https://github.com/uno-labs/semux-light-core>`_ 
+(written in C++, based on `libSodium <https://github.com/jedisct1/libsodium>`_)
 for the ability to work with Semux cryptographic functions in JavaScript projects.
+
+The project is hosted on GitHub - https://github.com/uno-labs/semux-light-core-wasm
 
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
 
+   usage/Introduction
    usage/Get-started
    usage/AccountHD
    usage/Addr
@@ -21,10 +26,3 @@ for the ability to work with Semux cryptographic functions in JavaScript project
    usage/TransactionSign
    usage/TransactionType
 
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`

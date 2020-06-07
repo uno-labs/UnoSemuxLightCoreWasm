@@ -2,7 +2,7 @@ Semux light core webassembly library
 ====================================
 
 This project is a **WebAssembly** version of the [Semux light core library](https://github.com/uno-labs/semux-light-core) 
-(written in C++) for the ability to work with Semux cryptographic functions in the JavaScript projects.
+(written in C++, based on libSodium) for the ability to work with Semux cryptographic functions in the JavaScript projects.
 
 Look how easy it is to use:
 
@@ -31,6 +31,9 @@ Capabilities:
 
 Installation
 ------------
+
+To build the project, QMAKE and EMSCRIPTEN compiler are used. The build process is quite complicated,
+so the compiled files are laid out in the assets section.
 
 Download an archive `uno_semux_light_core.tar.gz` from assets on release page of this project.
 Then unpack the archive into your project folder.

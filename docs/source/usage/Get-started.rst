@@ -4,26 +4,26 @@ Get started
 Important notes
 ---------------
 
-Some functions are *static*
+Some functions are **static**
 and can be called without creating an object. Like that:
 
-.. code-block:: html
+.. code-block:: javascript
 
    var result = Module.<UnoSemuxSomeClass>.<someStaticFunctionName>();
 
 Other functions are members of some classes. And first you have to create a class
 and then to call its method:
 
-.. code-block:: html
+.. code-block:: javascript
 
    var myClass = new Module.<UnoSemuxSomeClass>;
    var result = myClass.<someMethod>;
 
 All functions return a result object that always has two important fields -
-**error** and **res**:
+``error`` and ``res``:
 
-- `result.error` - if successful, takes an `undefined` value;
-- `result.res` -  consists the result.
+- ``result.error`` - if successful, takes an ``undefined`` value;
+- ``result.res`` -  consists the result.
 
 Typical usage
 -------------

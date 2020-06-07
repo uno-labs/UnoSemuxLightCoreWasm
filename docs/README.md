@@ -14,6 +14,8 @@ To build an HTML version of the documentation on your computer:
 
 ```sh
    $ pip install sphinx
+   $ pip install recommonmark
+   $ pip install sphinx-rtd-theme
    $ cd /path/to/cloned/project
    $ cd docs
    $ make html
@@ -26,7 +28,7 @@ You have also some other formats to build. Run `make help` to see those options.
 
 # Documentation online
 
-The actual online version of the documentation you cat find at:
+The actual online version of the documentation you can find at:
 
 https://light-core-wasm.readthedocs.io/en/docs/
 
