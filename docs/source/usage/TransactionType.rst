@@ -1,7 +1,15 @@
-TransactionType class
-=====================
+TransactionType enum
+====================
 
-.. js:class:: TransactionType
+The following constants are used to indicate the type of transaction:
 
-   About `TransactionType` class and its methods.
+   .. js:data:: Module.UnoSemuxTransactionType.COINBASE
+   .. js:data:: Module.UnoSemuxTransactionType.TRANSFER
+   .. js:data:: Module.UnoSemuxTransactionType.DELEGATE
+   .. js:data:: Module.UnoSemuxTransactionType.VOTE
+   .. js:data:: Module.UnoSemuxTransactionType.UNVOTE
+   .. js:data:: Module.UnoSemuxTransactionType.CREATE
+   .. js:data:: Module.UnoSemuxTransactionType.CALL
+
+These constants are used when creating a :js:class:`Transaction` object.
 

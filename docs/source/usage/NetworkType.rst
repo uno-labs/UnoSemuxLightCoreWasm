@@ -1,7 +1,11 @@
-NetworkType class
-=================
+NetworkType enum
+================
 
-.. js:class:: NetworkType
+The following constants are used to indicate the type of network:
 
-   About class `NetworkType`.
+   .. js:data:: Module.UnoSemuxNetworkType.MAINNET
+   .. js:data:: Module.UnoSemuxNetworkType.TESTNET
+   .. js:data:: Module.UnoSemuxNetworkType.DEVNET
+
+These constants are used when creating a :js:class:`Transaction` object.
 
