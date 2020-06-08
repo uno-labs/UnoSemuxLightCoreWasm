@@ -4,27 +4,32 @@ Getting started
 Important notes
 ---------------
 
-Some functions are **static**
-and can be called without creating an object. Like that:
+Some methods are **static**
+and can be called without creating an object. For example:
 
 .. code-block:: javascript
 
-   var result = Module.<UnoSemuxSomeClass>.<someStaticFunctionName>();
+   var result = Module.UnoSemux<SomeClass>.<someStaticMethod>();
 
-Other functions are members of some classes. 
-At first you have to create an object of certain class
-and then to call its methods:
+
+Other methods are members of objects of certain classes.
+So at first you have to create an object of certain class and then to call its methods.
+In fact, in this library almost always objects are created by some factory method, e.g.:
 
 .. code-block:: javascript
 
-   var myClass = new Module.<UnoSemuxSomeClass>;
-   var result = myClass.<someMethod>;
+   var myObject = Module.UnoSemux<SomeClass>.<someFactoryMethod>();
+   var result = myObject.<someMethod>();
+
 
 All functions return a result object that always has two important fields -
 ``error`` and ``res``:
 
 - ``result.error`` - if successful, takes an ``undefined`` value;
 - ``result.res`` -  contains the result.
+
+and **never** throw exceptions.
+
 
 Typical usage
 -------------

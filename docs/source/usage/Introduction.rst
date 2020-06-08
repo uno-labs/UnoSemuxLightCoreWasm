@@ -9,13 +9,22 @@ A wallet is a tool for creating asymmetric key pairs and digital signatures for 
 It should have the following main features:
 
 - Random mnemonic phrase generation;
-- Creation or recovery an account based on a mnemonic phrase;
-- Deriving a sequence of key pairs for the account;
-- Signing transaction messages;
+- Creation or recovery an HD Account based on a mnemonic phrase;
+- Import a private key;
+- Deriving a sequence of key pairs (Addresses) for the HD Account;
+- Finding derived Addresses in HD Account;
+- Generating a message for a transaction;
+- Signing transaction messages.
 
-Semux uses cryptography on elliptic curves ed25519, and this is why you can’t use
-standard Web Crypto API present in modern browsers.
-The `libSodium` library is most suitable for implementing the algorithms used in Semux.
+In fact, a fully functional wallet must be able to perform many other functions.
+Such as, for example, communication with a network node through its API
+to obtain information necessary for the transaction.
+The implementation of such advanced features is beyond the scope of this lightweight library,
+designed to perform basic Semux-specific cryptographic operations in the JavaScript environment.
+
+The specificity of Semux algorithms is that they use cryptography on elliptic curves `Ed25519`,
+and this is why you can’t use standard `Web Crypto API` present in modern browsers.
+Fairly well-known `libSodium` library is most suitable for implementing the algorithms used in Semux.
 This project makes heavy use of the libSodium.
 
 You can read more about the HD Wallets at the following links:
