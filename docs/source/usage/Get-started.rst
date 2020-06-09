@@ -22,13 +22,15 @@ In fact, in this library almost always objects are created by some factory metho
    var result = myObject.<someMethod>();
 
 
-All functions return a result object that always has two important fields -
+All methods return a result object that always has two important fields -
 ``error`` and ``res``:
 
 - ``result.error`` - if successful, takes an ``undefined`` value;
 - ``result.res`` -  contains the result.
 
-and **never** throw exceptions.
+.. warning::
+   The methods never throw exceptions related to the logic of the library.
+   But the system exceptions can be thrown nonetheless!
 
 
 Typical usage
@@ -39,6 +41,10 @@ First of all you have to include corresponding JavaScript file into your HTML pa
 .. code-block:: html
 
    <script src="UnoSemuxLightCoreWasm.js"></script>
+
+
+.. note::
+   The concepts of `HD Address` and `non-HD Address` mean an object of the :js:class:`Addr` class, which is essentially a key pair.
 
 
 Mnemonic phrase generation

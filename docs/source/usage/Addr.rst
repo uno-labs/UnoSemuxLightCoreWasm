@@ -1,12 +1,12 @@
 Addr class
 ==========
 
+.. note::
+   The concepts of `HD Address` or `non-HD Address` mean an object of the :js:class:`Addr` class, which is essentially a key pair.
+
 .. js:class:: Addr
 
    This class is designed to work with a specific key pair (not with an HD wallet).
-
-   .. note::
-      The concept of `HD Address` means an object of the :js:class:`Addr` class, which is essentially a key pair.
 
 
 Static methods

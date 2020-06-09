@@ -11,8 +11,10 @@ It should have the following main features:
 - Random mnemonic phrase generation;
 - Creation or recovery an HD Account based on a mnemonic phrase;
 - Import a private key;
-- Deriving a sequence of key pairs (Addresses) for the HD Account;
-- Finding derived Addresses in HD Account;
+- Generating a random key pair (Address);
+- Deriving a sequence of key pairs (HD Addresses) for the HD Account;
+- Finding derived HD Addresses in HD Account;
+- Finding non-HD Addresses (imported or genearated);
 - Generating a message for a transaction;
 - Signing transaction messages.
 

@@ -1,13 +1,15 @@
 AccountHD class
 ===============
 
+.. note::
+   The concepts of `HD Address` and `non-HD Address` mean an object of the :js:class:`Addr` class, which is essentially a key pair.
+
+
 .. js:class:: AccountHD
 
    An object of this class is not created using the ``new`` operator,
    but is returned by the static function :js:func:`sImportFromMnemonic` importing a `mnemonic phrase`.
 
-   .. note::
-      The concept of `HD Address` means an object of the :js:class:`Addr` class, which is essentially a key pair.
 
 Static methods
 --------------
@@ -81,26 +83,35 @@ Class methods
       }
 
 
+.. js:function:: addrAdd(address)
+
+   :param Addr address: An object of :js:class:`Addr` class.
+   :returns: ``void``.
+
+   | Add the `non-HD Address` to collection of Addresses.
+   | You can create such an object of :js:class:`Addr` class by :js:func:`sImportPrivateKeyStrHex` or :js:func:`sGenerateNew` methods.
+
+
 .. js:function:: addrFindByName(name)
 
-   :param string name: A name of an address.
+   :param string name: A name (alias) of an Address.
    :returns: An ``object`` of :js:class:`Addr` class.
 
-   | Finds an address by its name.
+   | Finds an Address by its name (alias).
 
 
 .. js:function:: addrFindByHexStr(hex)
 
-   :param string hex: A hex form of an address.
+   :param string hex: A hex form of an Address.
    :returns: An ``object`` of :js:class:`Addr` class.
 
-   | Finds an address by its HEX representation.
+   | Finds an Address by its HEX representation.
 
 
-.. js:function:: addrHexStrByName(addressName)
+.. js:function:: addrHexStrByName(name)
 
-   :param string addressName: A name of an address.
-   :returns: A ``string`` containing the HEX representation of an address.
+   :param string name: A name (alias) of an Address.
+   :returns: A ``string`` containing the HEX representation of an Address.
 
-   | Returns the HEX representation of an address by its name.
+   | Returns the HEX representation of an Address by its name (alias).
 
