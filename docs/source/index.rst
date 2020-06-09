@@ -18,6 +18,7 @@ The project is hosted on GitHub - https://github.com/uno-labs/semux-light-core-w
    :caption: Contents:
 
    usage/Introduction
+   usage/Terms
    usage/Get-started
    usage/AccountHD
    usage/Addr

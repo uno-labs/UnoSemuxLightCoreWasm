@@ -32,9 +32,9 @@ Class methods
 
 .. js:function:: addrStrHex()
 
-   :returns: A ``string`` containing HEX representation of itself.
+   :returns: A ``string`` containing a `Semux-address` (without leading '0x').
 
-   | Method to get the HEX representation of itself.
+   | Method to get a HEX representation of itself (aka `Semux-address` or `receiving address`).
    | Example:
 
    .. code-block:: javascript
@@ -69,18 +69,26 @@ Class methods
       }
 
 
-.. js:function:: sign2(transaction)
+.. js:function:: nonce()
 
-   :param transaction: An object of :js:class:`Transaction` class.
-   :returns: An ``object`` of :js:class:`TransactionSign` class.
+   :returns: A ``string`` containing the current `Nonce` (string representation of SINT64 - max value is 9,223,372,036,854,775,807).
 
-   | Performs a signature of a :js:class:`Transaction` object. It's similar to :js:func:`sign1` method.
+   | Method to get the current `Nonce`, which was set by :js:func:`setNonce` method or
+     was incremented by :js:func:`incNonce` method.
 
 
 .. js:function:: setNonce(nonce)
 
-   :param string nonce: A `nonce`.
+   :param string nonce: A string representation of `Nonce` to set.
    :returns: ``void``.
 
-   | Set the nonce for this address.
+   | Set the `Nonce` for this Address.
+
+
+.. js:function:: incNonce()
+
+   :returns: A ``string`` containing the incremented `Nonce`.
+
+   | Method to increment the current `Nonce`.
+
 

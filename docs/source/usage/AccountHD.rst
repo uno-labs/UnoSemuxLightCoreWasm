@@ -88,30 +88,46 @@ Class methods
    :param Addr address: An object of :js:class:`Addr` class.
    :returns: ``void``.
 
-   | Add the `non-HD Address` to collection of Addresses.
+   | Add the `non-HD Address` to the collection of Addresses.
    | You can create such an object of :js:class:`Addr` class by :js:func:`sImportPrivateKeyStrHex` or :js:func:`sGenerateNew` methods.
 
 
 .. js:function:: addrFindByName(name)
 
-   :param string name: A name (alias) of an Address.
+   :param string name: The name (alias) of the Address to search for.
    :returns: An ``object`` of :js:class:`Addr` class.
 
-   | Finds an Address by its name (alias).
+   | Finds the Address by its name (alias).
 
 
 .. js:function:: addrFindByHexStr(hex)
 
-   :param string hex: A hex form of an Address.
+   :param string hex: A hex form of the Address to search for.
    :returns: An ``object`` of :js:class:`Addr` class.
 
-   | Finds an Address by its HEX representation.
+   | Finds the Address by its HEX representation.
 
 
 .. js:function:: addrHexStrByName(name)
 
-   :param string name: A name (alias) of an Address.
+   :param string name: The name (alias) of the Address.
    :returns: A ``string`` containing the HEX representation of an Address.
 
-   | Returns the HEX representation of an Address by its name (alias).
+   | Returns a HEX representation of the Address by its name (alias).
+
+
+.. js:function:: addrDeleteByName(name)
+
+   :param string name: The name (alias) of the Address to be deleted.
+   :returns: ``void``.
+
+   | Deletes the Address having the given name.
+
+
+.. js:function:: addrDeleteByHexStr(hex)
+
+   :param string name: A hex form of the Address to be deleted.
+   :returns: ``void``.
+
+   | Deletes the Address by its HEX representation.
 
