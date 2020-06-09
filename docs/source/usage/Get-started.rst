@@ -43,9 +43,6 @@ First of all you have to include corresponding JavaScript file into your HTML pa
    <script src="UnoSemuxLightCoreWasm.js"></script>
 
 
-.. note::
-   The concepts of `HD Address` and `non-HD Address` mean an object of the :js:class:`Addr` class, which is essentially a key pair.
-
 
 Mnemonic phrase generation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~

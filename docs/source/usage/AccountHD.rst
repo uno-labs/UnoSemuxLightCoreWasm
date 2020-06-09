@@ -1,10 +1,6 @@
 AccountHD class
 ===============
 
-.. note::
-   The concepts of `HD Address` and `non-HD Address` mean an object of the :js:class:`Addr` class, which is essentially a key pair.
-
-
 .. js:class:: AccountHD
 
    An object of this class is not created using the ``new`` operator,
