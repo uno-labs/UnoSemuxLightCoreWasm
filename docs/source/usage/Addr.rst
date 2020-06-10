@@ -3,7 +3,7 @@ Addr class
 
 .. js:class:: Addr
 
-   This class is designed to work with a specific key pair (not with an HD wallet).
+   This class is designed to work with a specific key pair (not with an :term:`HD wallet`).
 
 
 Static methods
@@ -29,9 +29,9 @@ Class methods
 
 .. js:function:: addrStrHex()
 
-   :returns: A ``string`` containing a `Semux-address` (without leading '0x').
+   :returns: A ``string`` containing a :term:`Semux-address` (without leading '0x').
 
-   | Method to get a HEX representation of itself (aka `Semux-address` or `receiving address`).
+   | Method to get a HEX representation of itself (aka :term:`Semux-address`).
    | Example:
 
    .. code-block:: javascript
@@ -68,24 +68,24 @@ Class methods
 
 .. js:function:: nonce()
 
-   :returns: A ``string`` containing the current `Nonce` (string representation of SINT64 - max value is 9,223,372,036,854,775,807).
+   :returns: A ``string`` containing the current :term:`Nonce` (string representation of SINT64 - max value is 9,223,372,036,854,775,807).
 
-   | Method to get the current `Nonce`, which was set by :js:func:`setNonce` method or
+   | Method to get the current :term:`Nonce`, which was set by :js:func:`setNonce` method or
      was incremented by :js:func:`incNonce` method.
 
 
 .. js:function:: setNonce(nonce)
 
-   :param string nonce: A string representation of `Nonce` to set.
+   :param string nonce: A string representation of :term:`Nonce` to set.
    :returns: ``void``.
 
-   | Set the `Nonce` for this Address.
+   | Set the :term:`Nonce` for this :term:`Address`.
 
 
 .. js:function:: incNonce()
 
-   :returns: A ``string`` containing the incremented `Nonce`.
+   :returns: A ``string`` containing the incremented :term:`Nonce`.
 
-   | Method to increment the current `Nonce`.
+   | Method to increment the current :term:`Nonce`.
 
 

@@ -1,23 +1,25 @@
 Terms and Definitions
 =====================
 
+.. glossary::
+
    WebAssembly
       The `WebAssembly <https://webassembly.org/>`_ (abbreviated *Wasm*) is a software technology
       that allows you to use code written in C++ in the JavaScript environment.
 
 
    Wallet
-      A wallet is software that stores a set of key pairs of asymmetric cryptography and 
+      A *wallet* is software that stores a set of key pairs of asymmetric cryptography and 
       allows you to perform transaction signing operations using them.
 
 
    HD Wallet
-      An *Hierarchical Deterministic* wallet is a wallet that allows deriving hierarchical chains of key pairs
+      An *Hierarchical Deterministic* wallet is a *wallet* that allows deriving hierarchical chains of key pairs
       from the initial master seed in a deterministic way.
 
 
    HD Account
-      An *HD Account* is a very specific intermediate node in the hierarchy of an HD Wallet (defined by the Semuks specification),
+      An *HD Account* is a very specific intermediate node in the hierarchy of an HD Wallet (defined by the Semux specification),
       from which all other key pairs are derived.
 
 
@@ -47,7 +49,8 @@ Terms and Definitions
       The sentence could be written on paper or spoken over the telephone.
 
 
-   Semux-address or Hex address or Recipient address
+   Semux-address
+      Aka *"Hex address"* or *"Recipient address"*.
       It's a hexadecimal string that is the *"official address"* of some wallet
       to which you can, for example, transfer a certain amount of cryptocurrency.
 
@@ -55,8 +58,9 @@ Terms and Definitions
 
 
    Nonce
-      *Nonce* is a sequentially increasing and unique integer for the sender address. Varies from 0 to 9,223,372,036,854,775,807.
+      *Nonce* is a sequentially increasing and unique integer for the sender address. Max value is 9,223,372,036,854,775,807.
       Used to make transactions.
+      If you do not know the next *Nonce* for a transaction, then you can get it by contacting the Semux node API.
 
       In the parameters of the methods of this library, the *Nonce* is passed as a string decimal representation.
 

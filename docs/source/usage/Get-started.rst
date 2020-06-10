@@ -33,6 +33,10 @@ All methods return a result object that always has two important fields -
    But the system exceptions can be thrown nonetheless!
 
 
+The arguments to the methods, which are essentially integers, are passed as string values. 
+The reason is that JavaScript cannot work with Big Integers.
+
+
 Typical usage
 -------------
 

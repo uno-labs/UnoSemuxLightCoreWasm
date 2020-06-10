@@ -1,26 +1,28 @@
 Introduction
 ============
 
-This library is essentially intended to create various web versions of the Semux light HD Wallet.
-They can be used both to replace the standard wallet developed by the creators of the Semux core project,
+This library is essentially intended to create various web versions of the Semux light :term:`HD Wallet`.
+They can be used both to replace the standard wallet developed by the creators
+of the `Semux core project <https://github.com/semuxproject/semux-core>`_,
 as well as for various specialized applications (dApps) based on the Semux ecosystem.
 
-A wallet is a tool for creating asymmetric key pairs and digital signatures for transactions in the Semux network.
+A `wallet` is a tool for creating asymmetric key pairs and digital signatures for transactions in the Semux network.
 It should have the following main features:
 
 - Random mnemonic phrase generation;
-- Creation or recovery an HD Account based on a mnemonic phrase;
+- Creation or recovery an :term:`HD Account` based on a mnemonic phrase;
 - Import a private key;
-- Generating a random key pair (Address);
-- Deriving a sequence of key pairs (HD Addresses) for the HD Account;
+- Generating a random key pair (:term:`Address`);
+- Deriving a sequence of key pairs (:term:`HD Addresses <HD Address>`) for the HD Account;
 - Finding derived HD Addresses in HD Account;
-- Finding non-HD Addresses (imported or genearated);
+- Finding :term:`non-HD Addresses <non-HD Address>` (imported or genearated);
 - Generating a message for a transaction;
 - Signing transaction messages.
 
 In fact, a fully functional wallet must be able to perform many other functions.
 Such as, for example, communication with a network node through its API
-to obtain information necessary for the transaction.
+to obtain information necessary for the transaction, or
+storing wallet data between user sessions in a browser.
 The implementation of such advanced features is beyond the scope of this lightweight library,
 designed to perform basic Semux-specific cryptographic operations in the JavaScript environment.
 
