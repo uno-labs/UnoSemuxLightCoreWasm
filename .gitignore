@@ -14,8 +14,9 @@
 **/.metadata/**
 **/RemoteSystemsTempFiles/**
 
-# Don't ignore .gitignore
+# Don't ignore .git*
 !.gitignore
+!.gitattributes
 
 # Don't ignore sources
 !*.c
@@ -51,7 +52,6 @@
 !*.ASM
 !*.qml
 !*.qmlproject
-!Makefile
 
 #
 !*.jar
@@ -141,3 +141,7 @@
 !*.gbr
 
 moc_*.cpp
+
+# Ignore CMake files
+CMakeCache.txt
+/CMakeFiles/
