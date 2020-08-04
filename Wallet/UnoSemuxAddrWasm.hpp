@@ -7,32 +7,27 @@ namespace UnoSemux {
 
 class UnoSemuxAddrWasm
 {
-public:
-	using STDSP = std::shared_ptr<UnoSemuxAddrWasm>;
+    CLASS_REMOVE_CTRS_EXCEPT_DEFAULT(UnoSemuxAddrWasm)
 
 public:
-										UnoSemuxAddrWasm		(void) noexcept;
-										UnoSemuxAddrWasm		(const UnoSemuxAddrWasm& aAddrWasm) = delete;
-										UnoSemuxAddrWasm		(UnoSemuxAddrWasm&& aAddrWasm) noexcept;
-										UnoSemuxAddrWasm		(UnoSemuxAddr::SP aAddr) noexcept;
-										~UnoSemuxAddrWasm		(void) noexcept;
+    using STDSP = std::shared_ptr<UnoSemuxAddrWasm>;
 
-	emscripten::val						AddrStrHex				(void) const;
+public:
+                                        UnoSemuxAddrWasm        (void) noexcept;
+                                        UnoSemuxAddrWasm        (UnoSemuxAddr::SP aAddr) noexcept;
+                                        ~UnoSemuxAddrWasm       (void) noexcept;
 
-	emscripten::val						Nonce					(void) const;
-	emscripten::val						IncNonce				(void);
-	emscripten::val						SetNonce				(const std::string aNonce);
-
-	emscripten::val						Sign1					(UnoSemuxTransactionWasm::STDSP aTransactionWasm) const;
-	emscripten::val						Sign2					(UnoSemuxTransactionWasm::STDSP aTransactionWasm) const;
-
-	static emscripten::val				SGenerateNew			(void);
-	static emscripten::val				SImportPrivateKeyStrHex	(const std::string aPrivateStrHex);
-
-	UnoSemuxAddr::SP					_Addr					(void) {return iAddr;}
+    emscripten::val                     private_key             (void) const;
+    emscripten::val                     address                 (void) const;
+    emscripten::val                     nonce                   (void) const;
+    emscripten::val                     inc_nonce               (void);
+    emscripten::val                     set_nonce               (const std::string aNonce);
+    emscripten::val                     name                    (void) const;
+    emscripten::val                     set_name                (const std::string aName);
+    emscripten::val                     sign_transaction        (UnoSemuxTransactionWasm::STDSP aTransactionWasm) const;
 
 private:
-	UnoSemuxAddr::SP					iAddr;
+    UnoSemuxAddr::SP                    iAddr;
 };
 
 }//namespace UnoSemux

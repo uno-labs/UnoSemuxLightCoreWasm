@@ -7,11 +7,6 @@ UnoSemuxTransactionSignWasm::UnoSemuxTransactionSignWasm (void) noexcept
 {
 }
 
-UnoSemuxTransactionSignWasm::UnoSemuxTransactionSignWasm (UnoSemuxTransactionSignWasm&& aSignWasm) noexcept:
-iSign(std::move(aSignWasm.iSign))
-{
-}
-
 UnoSemuxTransactionSignWasm::UnoSemuxTransactionSignWasm (UnoSemuxTransactionSign&& aSign) noexcept:
 iSign(std::move(aSign))
 {
@@ -21,57 +16,56 @@ UnoSemuxTransactionSignWasm::~UnoSemuxTransactionSignWasm (void) noexcept
 {
 }
 
-emscripten::val	UnoSemuxTransactionSignWasm::TxData (void) const
+emscripten::val UnoSemuxTransactionSignWasm::data (void) const
 {
-	return WasmExceptionCatcher([&]()
-	{
-		return emscripten::val(GpStringOps::SFromBytes(iSign.TxData()));
-	});
+    return WasmExceptionCatcher([&]()
+    {
+        return emscripten::val(iSign.DataHex());
+    });
 }
 
-emscripten::val	UnoSemuxTransactionSignWasm::TxHash (void) const
+emscripten::val UnoSemuxTransactionSignWasm::hash (void) const
 {
-	return WasmExceptionCatcher([&]()
-	{
-		return emscripten::val(GpStringOps::SFromBytes(iSign.TxHash()));
-	});
+    return WasmExceptionCatcher([&]()
+    {
+        return emscripten::val(iSign.HashHex());
+    });
 }
 
-emscripten::val	UnoSemuxTransactionSignWasm::Sign (void) const
+emscripten::val UnoSemuxTransactionSignWasm::sign (void) const
 {
-	return WasmExceptionCatcher([&]()
-	{
-		return emscripten::val(GpStringOps::SFromBytes(iSign.Sign()));
-	});
+    return WasmExceptionCatcher([&]()
+    {
+        return emscripten::val(iSign.SignHex());
+    });
 }
 
-emscripten::val	UnoSemuxTransactionSignWasm::PubKeyNoPrefix (void) const
+emscripten::val UnoSemuxTransactionSignWasm::public_key (void) const
 {
-	return WasmExceptionCatcher([&]()
-	{
-		return emscripten::val(GpStringOps::SFromBytes(iSign.PubKeyNoPrefix()));
-	});
+    return WasmExceptionCatcher([&]()
+    {
+        return emscripten::val(iSign.PublicKeyHex());
+    });
 }
 
-emscripten::val	UnoSemuxTransactionSignWasm::Encode (void) const
+emscripten::val UnoSemuxTransactionSignWasm::encode (void) const
 {
-	return WasmExceptionCatcher([&]()
-	{
-		const GpBytesArray data = iSign.Encode();
-		return emscripten::val(GpStringOps::SFromBytes(data));
-	});
+    return WasmExceptionCatcher([&]()
+    {
+        return emscripten::val(iSign.EncodeHex());
+    });
 }
 
 }//namespace UnoSemux
 
 EMSCRIPTEN_BINDINGS(UnoSemuxTransactionSignWasm_bind)
 {
-	emscripten::class_<UnoSemux::UnoSemuxTransactionSignWasm>("UnoSemuxTransactionSign")
-		.smart_ptr_constructor("UnoSemuxTransactionSign", &std::make_shared<UnoSemux::UnoSemuxTransactionSignWasm>)
-		.function("txData", &UnoSemux::UnoSemuxTransactionSignWasm::TxData)
-		.function("txHash", &UnoSemux::UnoSemuxTransactionSignWasm::TxHash)
-		.function("sign", &UnoSemux::UnoSemuxTransactionSignWasm::Sign)
-		.function("pubKeyNoPrefix", &UnoSemux::UnoSemuxTransactionSignWasm::PubKeyNoPrefix)
-		.function("encode", &UnoSemux::UnoSemuxTransactionSignWasm::Encode)
-	;
-}
+    emscripten::class_<UnoSemux::UnoSemuxTransactionSignWasm>("UnoSemuxTransactionSign")
+        .smart_ptr_constructor("UnoSemuxTransactionSign", &std::make_shared<UnoSemux::UnoSemuxTransactionSignWasm>)
+        .function("data", &UnoSemux::UnoSemuxTransactionSignWasm::data)
+        .function("hash", &UnoSemux::UnoSemuxTransactionSignWasm::hash)
+        .function("sign", &UnoSemux::UnoSemuxTransactionSignWasm::sign)
+        .function("public_key", &UnoSemux::UnoSemuxTransactionSignWasm::public_key)
+        .function("encode", &UnoSemux::UnoSemuxTransactionSignWasm::encode)
+    ;
+};
