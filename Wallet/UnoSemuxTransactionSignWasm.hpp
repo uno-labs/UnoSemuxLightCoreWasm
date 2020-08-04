@@ -6,25 +6,24 @@ namespace UnoSemux {
 
 class UnoSemuxTransactionSignWasm
 {
-public:
-	using STDSP = std::shared_ptr<UnoSemuxTransactionSignWasm>;
+    CLASS_REMOVE_CTRS_EXCEPT_DEFAULT(UnoSemuxTransactionSignWasm)
 
 public:
-							UnoSemuxTransactionSignWasm		(void) noexcept;
-							UnoSemuxTransactionSignWasm		(const UnoSemuxTransactionSignWasm& aSignWasm) = delete;
-							UnoSemuxTransactionSignWasm		(UnoSemuxTransactionSignWasm&& aSignWasm) noexcept;
-							UnoSemuxTransactionSignWasm		(UnoSemuxTransactionSign&& aSign) noexcept;
-							~UnoSemuxTransactionSignWasm	(void) noexcept;
+    using STDSP = std::shared_ptr<UnoSemuxTransactionSignWasm>;
 
-	emscripten::val			TxData							(void) const;
-	emscripten::val			TxHash							(void) const;
-	emscripten::val			Sign							(void) const;
-	emscripten::val			PubKeyNoPrefix					(void) const;
+public:
+                            UnoSemuxTransactionSignWasm     (void) noexcept;
+                            UnoSemuxTransactionSignWasm     (UnoSemuxTransactionSign&& aSign) noexcept;
+                            ~UnoSemuxTransactionSignWasm    (void) noexcept;
 
-	emscripten::val			Encode							(void) const;
+    emscripten::val         data                            (void) const;
+    emscripten::val         hash                            (void) const;
+    emscripten::val         sign                            (void) const;
+    emscripten::val         public_key                      (void) const;
+    emscripten::val         encode                          (void) const;
 
 private:
-	UnoSemuxTransactionSign	iSign;
+    UnoSemuxTransactionSign iSign;
 };
 
 }//namespace UnoSemux

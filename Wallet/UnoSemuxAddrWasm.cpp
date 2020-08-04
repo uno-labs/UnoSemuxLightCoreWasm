@@ -7,11 +7,6 @@ UnoSemuxAddrWasm::UnoSemuxAddrWasm (void) noexcept
 {
 }
 
-UnoSemuxAddrWasm::UnoSemuxAddrWasm (UnoSemuxAddrWasm&& aAddrWasm) noexcept:
-iAddr(std::move(aAddrWasm.iAddr))
-{
-}
-
 UnoSemuxAddrWasm::UnoSemuxAddrWasm (UnoSemuxAddr::SP aAddr) noexcept:
 iAddr(std::move(aAddr))
 {
@@ -21,105 +16,91 @@ UnoSemuxAddrWasm::~UnoSemuxAddrWasm (void) noexcept
 {
 }
 
-emscripten::val	UnoSemuxAddrWasm::AddrStrHex (void) const
+emscripten::val UnoSemuxAddrWasm::private_key (void) const
 {
-	return WasmExceptionCatcher([&]()
-	{
-		THROW_GPE_COND_CHECK_M(iAddr.IsNotNULL(), "Address object is null"_sv);
-		return emscripten::val(iAddr.VCn().AddrStrHex());
-	});
+    return WasmExceptionCatcher([&]()
+    {
+        return emscripten::val(std::string(iAddr.VC().PrivateKeyStrHex().ViewR().R().AsStringView()));
+    });
 }
 
-emscripten::val	UnoSemuxAddrWasm::Nonce (void) const
+emscripten::val UnoSemuxAddrWasm::address (void) const
 {
-	return WasmExceptionCatcher([&]()
-	{
-		THROW_GPE_COND_CHECK_M(iAddr.IsNotNULL(), "Address object is null"_sv);
-		return emscripten::val(GpStringOps::SFromSI64(iAddr.VCn().Nonce()));
-	});
+    return WasmExceptionCatcher([&]()
+    {
+        return emscripten::val(iAddr.VC().AddrStrHex());
+    });
 }
 
-emscripten::val	UnoSemuxAddrWasm::IncNonce (void)
+emscripten::val UnoSemuxAddrWasm::nonce (void) const
 {
-	return WasmExceptionCatcher([&]()
-	{
-		THROW_GPE_COND_CHECK_M(iAddr.IsNotNULL(), "Address object is null"_sv);
-		return emscripten::val(GpStringOps::SFromSI64(iAddr.Vn().IncNonce()));
-	});
+    return WasmExceptionCatcher([&]()
+    {
+        return emscripten::val(GpStringOps::SFromSI64(iAddr.VC().Nonce()));
+    });
 }
 
-emscripten::val	UnoSemuxAddrWasm::SetNonce (const std::string aNonce)
+emscripten::val UnoSemuxAddrWasm::inc_nonce (void)
 {
-	return WasmExceptionCatcher([&]()
-	{
-		THROW_GPE_COND_CHECK_M(iAddr.IsNotNULL(), "Address object is null"_sv);
-
-		iAddr.Vn().SetNonce(GpStringOps::SToSI64(aNonce));
-		return emscripten::val::undefined();
-	});
+    return WasmExceptionCatcher([&]()
+    {
+        return emscripten::val(GpStringOps::SFromSI64(iAddr.V().IncNonce()));
+    });
 }
 
-emscripten::val	UnoSemuxAddrWasm::Sign1 (UnoSemuxTransactionWasm::STDSP aTransactionWasm) const
+emscripten::val UnoSemuxAddrWasm::set_nonce (const std::string aNonce)
 {
-	return WasmExceptionCatcher([&]()
-	{
-		THROW_GPE_COND_CHECK_M(iAddr.IsNotNULL(), "Address object is null"_sv);
-
-		UnoSemuxTransactionSign				sign		= iAddr.VCn().Sign1(aTransactionWasm->_Transaction());
-		UnoSemuxTransactionSignWasm::STDSP	signWasm	= std::make_shared<UnoSemuxTransactionSignWasm>(std::move(sign));
-
-		return emscripten::val(signWasm);
-	});
+    return WasmExceptionCatcher([&]()
+    {
+        iAddr.V().SetNonce(GpStringOps::SToSI64(aNonce));
+        return emscripten::val::null();
+    });
 }
 
-emscripten::val	UnoSemuxAddrWasm::Sign2 (UnoSemuxTransactionWasm::STDSP aTransactionWasm) const
+emscripten::val UnoSemuxAddrWasm::name (void) const
 {
-	return WasmExceptionCatcher([&]()
-	{
-		THROW_GPE_COND_CHECK_M(iAddr.IsNotNULL(), "Address object is null"_sv);
-
-		UnoSemuxTransactionSign				sign		= iAddr.VCn().Sign2(aTransactionWasm->_Transaction());
-		UnoSemuxTransactionSignWasm::STDSP	signWasm	= std::make_shared<UnoSemuxTransactionSignWasm>(std::move(sign));
-
-		return emscripten::val(signWasm);
-	});
+    return WasmExceptionCatcher([&]()
+    {
+        return emscripten::val(std::string(iAddr.VC().Name()));
+    });
 }
 
-emscripten::val	UnoSemuxAddrWasm::SGenerateNew (void)
+emscripten::val UnoSemuxAddrWasm::set_name (const std::string aName)
 {
-	return WasmExceptionCatcher([&]()
-	{
-		UnoSemuxAddrWasm::STDSP addrWasm = std::make_shared<UnoSemuxAddrWasm>(std::move(UnoSemuxAddr::SGenerateNew()));
-
-		return emscripten::val(addrWasm);
-	});
+    return WasmExceptionCatcher([&]()
+    {
+        iAddr.V().SetName(aName);
+        return emscripten::val::null();
+    });
 }
 
-emscripten::val	UnoSemuxAddrWasm::SImportPrivateKeyStrHex (const std::string aPrivateStrHex)
+emscripten::val UnoSemuxAddrWasm::sign_transaction (UnoSemuxTransactionWasm::STDSP aTransactionWasm) const
 {
-	return WasmExceptionCatcher([&]()
-	{
-		UnoSemuxAddrWasm::STDSP addrWasm = std::make_shared<UnoSemuxAddrWasm>(std::move(UnoSemuxAddr::SImportPrivateKeyStrHex(aPrivateStrHex)));
+    return WasmExceptionCatcher([&]()
+    {
+        UnoSemuxTransactionSign             sign        = iAddr.VC().Sign1(aTransactionWasm->Transaction());
+        UnoSemuxTransactionSignWasm::STDSP  signWasm    = std::make_shared<UnoSemuxTransactionSignWasm>(std::move(sign));
 
-		return emscripten::val(addrWasm);
-	});
+        return emscripten::val(signWasm);
+    });
 }
 
 }//namespace UnoSemux
 
 EMSCRIPTEN_BINDINGS(UnoSemuxAddrWasm_bind)
 {
-	emscripten::class_<UnoSemux::UnoSemuxAddrWasm>("UnoSemuxAddr")
-		.smart_ptr_constructor("UnoSemuxAddr", &std::make_shared<UnoSemux::UnoSemuxAddrWasm>)
-		.function("addrStrHex", &UnoSemux::UnoSemuxAddrWasm::AddrStrHex)
-		.function("nonce", &UnoSemux::UnoSemuxAddrWasm::Nonce)
-		.function("incNonce", &UnoSemux::UnoSemuxAddrWasm::IncNonce)
-		.function("setNonce", &UnoSemux::UnoSemuxAddrWasm::SetNonce)
-		.function("sign1", &UnoSemux::UnoSemuxAddrWasm::Sign1)
-		.function("sign2", &UnoSemux::UnoSemuxAddrWasm::Sign2)
-		.class_function("sGenerateNew",  &UnoSemux::UnoSemuxAddrWasm::SGenerateNew)
-		.class_function("sImportPrivateKeyStrHex",  &UnoSemux::UnoSemuxAddrWasm::SImportPrivateKeyStrHex)
-	;
-}
+    emscripten::class_<UnoSemux::UnoSemuxAddrWasm>("UnoSemuxAddr")
+        .smart_ptr_constructor("UnoSemuxAddr", &std::make_shared<UnoSemux::UnoSemuxAddrWasm>)
+        .function("private_key", &UnoSemux::UnoSemuxAddrWasm::private_key)
+        .function("address", &UnoSemux::UnoSemuxAddrWasm::address)
+        .function("nonce", &UnoSemux::UnoSemuxAddrWasm::nonce)
+        .function("inc_nonce", &UnoSemux::UnoSemuxAddrWasm::inc_nonce)
+        .function("set_nonce", &UnoSemux::UnoSemuxAddrWasm::set_nonce)
+        .function("name", &UnoSemux::UnoSemuxAddrWasm::name)
+        .function("set_name", &UnoSemux::UnoSemuxAddrWasm::set_name)
+        .function("sign_transaction", &UnoSemux::UnoSemuxAddrWasm::sign_transaction)
+        //.class_function("sGenerateNew",  &UnoSemux::UnoSemuxAddrWasm::SGenerateNew)
+    ;
+};
 
 //https://emscripten.org/docs/porting/connecting_cpp_and_javascript/embind.html

@@ -4,21 +4,29 @@ namespace UnoSemux {
 
 emscripten::val WasmExceptionCatcher(std::function<emscripten::val()> aFn)
 {
-	emscripten::val returnVal = emscripten::val::object();
-	returnVal.set("error", emscripten::val::undefined());
+    emscripten::val resVal = emscripten::val::object();
 
-	try
-	{
-		returnVal.set("res", emscripten::val(aFn()));
-	} catch (const std::exception& e)
-	{
-		returnVal.set("error", std::string(e.what()));
-	} catch (...)
-	{
-		returnVal.set("error", emscripten::val(std::string("Unknown exception")));
-	}
+    try
+    {
+        resVal.set("data", aFn());
+    } catch (const std::exception& e)
+    {
+        resVal = WasmJsonApiError(e.what());
+    } catch (...)
+    {
+        resVal = WasmJsonApiError("Unknown exception"_sv);
+    }
 
-	return returnVal;
-};
+    return resVal;
+}
+
+emscripten::val WasmJsonApiError (std::string_view aMessage)
+{
+    emscripten::val error = emscripten::val::object();
+
+    error.set("error", std::string(aMessage));
+
+    return error;
+}
 
 }//namespace UnoSemux
