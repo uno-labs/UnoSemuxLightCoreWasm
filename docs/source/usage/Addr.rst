@@ -3,31 +3,19 @@ Addr class
 
 .. js:class:: Addr
 
-   This class is designed to work with a specific key pair (not with an :term:`HD wallet`).
+   This class is designed to work with a specific key pair (not with an :term:`HD wallet` or an :term:`HD Group`).
 
 
 Static methods
 --------------
 
-.. js:function:: sImportPrivateKeyStrHex(hexPrivate)
-
-   :param string hexPrivate: A HEX form of an importing private key.
-   :returns: An ``object`` of :js:class:`Addr` class.
-
-   | Imports a private key.
-
-
-.. js:function:: sGenerateNew()
-
-   :returns: An ``object`` of :js:class:`Addr` class.
-
-   | Generates a new key pair.
+   The class has no static methods.
 
 
 Class methods
 -------------
 
-.. js:function:: addrStrHex()
+.. js:method:: address()
 
    :returns: A ``string`` containing a :term:`Semux-address` (without leading '0x').
 
@@ -36,18 +24,13 @@ Class methods
 
    .. code-block:: javascript
 
-      // Get address as str hex
-      var addr_str_hex_rs = next_hd_addr.addrStrHex();
-
-      if (typeof addr_str_hex_rs.error != "undefined") {
-          console.log(addr_str_hex_rs.error);
-      } else {
-          var addr_str_hex = addr_str_hex_rs.res;
-          console.log("HEX address: " + "0x" + addr_str_hex);
-      }
+      //New HD address from HD group
+      var hdAddr = GetRes(window.semux_wallet.generate_next_hd_address(semux_hdGroupId));
+      var addrStrHex = GetRes(hdAddr.address());
+      console.log("New address: " + "0x" + addrStrHex);
 
 
-.. js:function:: sign1(transaction)
+.. js:method:: sign_transaction(transaction)
 
    :param transaction: An object of :js:class:`Transaction` class.
    :returns: An ``object`` of :js:class:`TransactionSign` class.
@@ -57,24 +40,38 @@ Class methods
 
    .. code-block:: javascript
 
-      var sign_rs = next_hd_addr.sign1(transaction);
+      var transaction = GetRes(Module.UnoSemuxTransaction.new_transaction(
+            network_type,
+            transaction_type,
+            String(to),
+            String(value),
+            String(fee),
+            String(nonce),
+            String(d.getTime()),
+            String(data),
+            String(gas),
+            String(gas_price)
+      ));
 
-      if (typeof sign_rs.error != "undefined") {
-          console.log(sign_rs.error);
-      } else {
-          var sign = sign_rs.res;
-      }
+      console.log("Sign transaction...");
+      var transaction_sign = GetRes(hdAddr.sign_transaction(transaction));
+
+      var transaction_hash = GetRes(transaction_sign.hash());
+      console.log("Transaction hash '" + transaction_hash + "'");
+
+      var transaction_sign_hex_encoded = GetRes(transaction_sign.encode());
+      console.log("Transaction sign hex str '" + transaction_sign_hex_encoded + "'");
 
 
-.. js:function:: nonce()
+.. js:method:: nonce()
 
    :returns: A ``string`` containing the current :term:`Nonce` (string representation of SINT64 - max value is 9,223,372,036,854,775,807).
 
-   | Method to get the current :term:`Nonce`, which was set by :js:func:`setNonce` method or
-     was incremented by :js:func:`incNonce` method.
+   | Method to get the current :term:`Nonce`, which was set by :js:method:`set_nonce` method or
+     was incremented by :js:method:`inc_nonce` method.
 
 
-.. js:function:: setNonce(nonce)
+.. js:method:: set_nonce(nonce)
 
    :param string nonce: A string representation of :term:`Nonce` to set.
    :returns: ``void``.
@@ -82,10 +79,32 @@ Class methods
    | Set the :term:`Nonce` for this :term:`Address`.
 
 
-.. js:function:: incNonce()
+.. js:method:: inc_nonce()
 
    :returns: A ``string`` containing the incremented :term:`Nonce`.
 
    | Method to increment the current :term:`Nonce`.
+
+
+.. js:method:: private_key()
+
+   :returns: A ``string`` HEX representation of the *private key* part of this :term:`Address`.
+
+   | Method to get the HEX representation of the *private key* part of this :term:`Address`.
+
+
+.. js:method:: name()
+
+   :returns: A ``string`` containing the *name* of this :term:`Address` if any name was set by :js:method:`set_name` method.
+
+   | Method to set recognizable name to this :term:`Address`.
+
+
+.. js:method:: set_name(name)
+
+   :param string name: Any recognizable name to assign to this Address.
+   :returns: ``void``.
+
+   | Set any recognizable name for this :term:`Address`.
 
 

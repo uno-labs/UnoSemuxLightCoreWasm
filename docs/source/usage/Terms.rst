@@ -13,13 +13,17 @@ Terms and Definitions
       allows you to perform transaction signing operations using them.
 
 
-   HD Wallet
+   HD Group
       An *Hierarchical Deterministic* wallet is a *wallet* that allows deriving hierarchical chains of key pairs
       from the initial master seed in a deterministic way.
 
 
+   HD Wallet
+      The *wallet* that consists of several HD Groups.
+
+
    HD Account
-      An *HD Account* is a very specific intermediate node in the hierarchy of an HD Wallet (defined by the Semux specification),
+      An *HD Account* is a very specific intermediate node in the hierarchy of an HD Group (defined by the Semux specification),
       from which all other key pairs are derived.
 
 
@@ -28,21 +32,21 @@ Terms and Definitions
 
 
    HD Address
-      An *HD Address* is one of the *Addresses* in the HD Wallet hierarchy.
+      An *HD Address* is one of the *Addresses* in the HD Group hierarchy.
 
 
    non-HD Address
-      It is single *Address* not associated with the HD Wallet.
+      It is single *Address* not associated with the HD Group.
       It can be obtained by importing a private key or random generation.
 
       .. note::
          This library can simultaneously work with several non-HD addresses,
-         but only with one HD Account (one hierarchy of HD Addresses).
+         and also with several HD Groups.
 
 
    Mnemonic phrase
       *Mnemonic phrase* (or mnemonic sentence) - is a group of easy to remember words (space separated)
-      for the determinate generation of the master seed (and, accordingly, HD Account) for HD Wallet.
+      for the determinate generation of the master seed (and, accordingly, HD Account) for certain HD Group in HD Wallet.
 
       A mnemonic code or sentence is superior for human interaction compared to the handling of raw binary
       or hexadecimal representations of a wallet master seed. 
