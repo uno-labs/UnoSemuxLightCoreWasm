@@ -4,7 +4,7 @@ TransactionSign class
 .. js:class:: TransactionSign
 
    An object of this class is not created using the ``new`` operator,
-   but is returned by the :js:func:`sign1` or :js:func:`sign2` methods of :js:class:`Addr` object.
+   but is returned by the :js:meth:`sign_transaction` method of :js:class:`Addr` object.
 
    Actually, the :js:class:`TransactionSign` objects are storage for the following data:
 
@@ -17,29 +17,18 @@ TransactionSign class
 Class methods
 -------------
 
-.. js:method:: txData()
+.. js:method:: data()
 
    :returns: A ``string`` containing encoded transaction data.
 
    | Method to get encoded transaction data.
 
 
-.. js:method:: txHash()
+.. js:method:: hash()
 
    :returns: A ``string`` containing a hash (Blake2B) of the transaction data.
 
    | Method to get a hash of the transaction data.
-   | Example:
-
-   .. code-block:: javascript
-
-      var sign_tx_hash_rs = sign.txHash();
-
-      if (typeof sign_tx_hash_rs.error != "undefined") {
-          console.log(sign_tx_hash_rs.error);
-      } else {
-          console.log("Transaction hash '" + sign_tx_hash_rs.res + "'");
-      }
 
 
 .. js:method:: sign()
@@ -49,7 +38,7 @@ Class methods
    | Method to get a sign of the transaction data hash.
 
 
-.. js:method:: pubKeyNoPrefix()
+.. js:method:: public_key()
 
    :returns: A ``string`` containing the public key.
 
@@ -65,11 +54,11 @@ Class methods
 
    .. code-block:: javascript
 
-      var sign_encode_rs = sign.encode()
+      var transaction_sign = GetRes(hdAddr.sign_transaction(transaction));
 
-      if (typeof sign_encode_rs.error != "undefined") {
-          console.log(sign_encode_rs.error);
-      } else {
-          console.log("Transaction sign hex str '" + sign_encode_rs.res + "'");
-      }
+      var transaction_hash = GetRes(transaction_sign.hash());
+      console.log("Transaction hash '" + transaction_hash + "'");
+
+      var transaction_sign_hex_encoded = GetRes(transaction_sign.encode());
+      console.log("Transaction sign hex str '" + transaction_sign_hex_encoded + "'");
 

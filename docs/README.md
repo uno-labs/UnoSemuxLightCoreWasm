@@ -30,5 +30,5 @@ You have also some other formats to build. Run `make help` to see those options.
 
 The actual online version of the documentation you can find at:
 
-https://light-core-wasm.readthedocs.io/en/docs/
+https://light-core-wasm.readthedocs.io/en/latest/
 

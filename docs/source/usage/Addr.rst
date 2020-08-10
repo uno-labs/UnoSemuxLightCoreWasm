@@ -67,8 +67,8 @@ Class methods
 
    :returns: A ``string`` containing the current :term:`Nonce` (string representation of SINT64 - max value is 9,223,372,036,854,775,807).
 
-   | Method to get the current :term:`Nonce`, which was set by :js:method:`set_nonce` method or
-     was incremented by :js:method:`inc_nonce` method.
+   | Method to get the current :term:`Nonce`, which was set by :js:meth:`set_nonce` method or
+     was incremented by :js:meth:`inc_nonce` method.
 
 
 .. js:method:: set_nonce(nonce)
@@ -95,7 +95,7 @@ Class methods
 
 .. js:method:: name()
 
-   :returns: A ``string`` containing the *name* of this :term:`Address` if any name was set by :js:method:`set_name` method.
+   :returns: A ``string`` containing the *name* of this :term:`Address` if any name was set by :js:meth:`set_name` method.
 
    | Method to set recognizable name to this :term:`Address`.
 
