@@ -20,7 +20,7 @@ The project is hosted on GitHub - https://github.com/uno-labs/semux-light-core-w
    usage/Introduction
    usage/Terms
    usage/Get-started
-   usage/AccountHD
+   usage/Wallet
    usage/Addr
    usage/NetworkType
    usage/Transaction

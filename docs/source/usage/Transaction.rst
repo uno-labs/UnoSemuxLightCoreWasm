@@ -3,13 +3,14 @@ Transaction class
 
 .. js:class:: Transaction
 
-   An object of :js:class:`Transaction` class is created with factory static method :js:meth:`sNew`.
+   An object of :js:class:`Transaction` class is created with factory static method :js:meth:`new_transaction` and
+   contains all necessary transaction parameters.
 
 
 Static methods
 --------------
 
-.. js:method:: sNew(networkType, transactionType, addressToHex, amount, fee, nonce, timestamp, dataHex, gas, gasPrice)
+.. js:method:: new_transaction(networkType, transactionType, addressToHex, amount, fee, nonce, timestamp, dataHex, gas, gasPrice)
 
    :param NetworkType networkType: A type of network.
    :param TransactionType transactionType: A type of transaction.
@@ -32,14 +33,14 @@ Static methods
       var network_type = Module.UnoSemuxNetworkType.TESTNET;
       var transaction_type = Module.UnoSemuxTransactionType.TRANSFER;
       var to = "0x82c38263217817de2ef28937c7747716eb1e7228";
-      var data = "0x756E6F2D6C616273206C696768742077616C6C65742064656D6F"; // uno-labs light wallet demo
+      var data = "0x756E6F2D6C616273206C696768742077616C6C65742064656D6F"; // "uno-labs light wallet demo" in hex form
       var value = "100000000"; // nanosem
       var fee = "5000000";     // nanosem
       var nonce = "533";       // Actually, you have to get it from Node API
       var gas = "0";
       var gas_price = "0";     // nanosem
 
-      var transaction_rs = new Module.UnoSemuxTransaction.sNew(
+      var transaction = GetRes(Module.UnoSemuxTransaction.new_transaction(
             network_type,
             transaction_type,
             String(to),
@@ -50,13 +51,15 @@ Static methods
             String(data),
             String(gas),
             String(gas_price)
-      );
+      ));
 
-      if (typeof transaction_rs.error != "undefined") {
-          console.log(transaction_rs.error);
-      } else {
-          var transaction = transaction_rs.res;
-      }
+      var transaction_sign = GetRes(hdAddr.sign_transaction(transaction));
+
+      var transaction_hash = GetRes(transaction_sign.hash());
+      console.log("Transaction hash '" + transaction_hash + "'");
+
+      var transaction_sign_hex_encoded = GetRes(transaction_sign.encode());
+      console.log("Transaction sign hex str '" + transaction_sign_hex_encoded + "'");
 
 
 Class methods
@@ -67,4 +70,23 @@ Class methods
    :returns: An encoded ``string`` of :js:class:`Transaction` object.
 
    | Method to get an encoded representation of itself.
+
+
+
+Getters
+-------
+
+There are also some "getters" methods in the class:
+
+      - network_type()
+      - transaction_type()
+      - address_to()
+      - value()
+      - fee()
+      - nonce()
+      - timestamp()
+      - data()
+      - gas()
+      - gas_price()
+
 

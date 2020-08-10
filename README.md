@@ -7,12 +7,8 @@ This project is a **WebAssembly** version of the [Semux light core library](http
 Look how easy it is to use:
 
     // Mnemonic phrase generation
-    var mnemonic_rs = Module.UnoSemuxAccountHD.sNewMnemonic();
-
-    if (typeof mnemonic_rs.error != "undefined")
-        console.log(mnemonic_rs.error);
-    else
-        console.log("New mnemonic phrase '" + mnemonic_rs.res + "'");
+    var mnemonic_phrase = GetRes(Module.UnoSemuxWallet.new_mnemonic_pharase());
+    console.log("New mnemonic phrase: '" + mnemonic_phrase + "'");
 
 
 Features
@@ -47,7 +43,7 @@ Documentation
 
 The actual online version of the documentation you can find at:
 
-https://light-core-wasm.readthedocs.io/en/docs/
+https://light-core-wasm.readthedocs.io/en/latest/
 
 License
 -------
