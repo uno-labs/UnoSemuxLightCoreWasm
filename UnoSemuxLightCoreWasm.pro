@@ -28,8 +28,8 @@ compiler_gcc{
 }
 
 #c++20
-CONFIG			+=	c++2a
-QMAKE_CXXFLAGS	+=	-std=gnu++2a
+CONFIG			+=	c++20
+QMAKE_CXXFLAGS	+=	-std=gnu++20
 
 QMAKE_CXXFLAGS	+= -fvisibility=hidden -fvisibility-inlines-hidden
 QMAKE_CXXFLAGS	+= -ffunction-sections -fdata-sections -fexceptions -fstrict-aliasing -fstack-clash-protection
@@ -49,7 +49,7 @@ debug_build {
 		QMAKE_CXXFLAGS	+= -fsanitize=address -fsanitize=undefined -fno-sanitize=vptr
 		LIBS += -lasan
 		LIBS += -lubsan
-		BOOST_POSTFIX = _asan
+		#BOOST_POSTFIX = _asan
 	}
 } else:release_build {
 	message([$$PACKET_NAME]: ***************** Build mode RELEASE *****************)
