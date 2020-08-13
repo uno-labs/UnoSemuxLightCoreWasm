@@ -48,6 +48,7 @@ Build
 - standard for the C++ - 20
 - gcc-10, g++-10
 
+
 	sudo add-apt-repository ppa:ubuntu-toolchain-r/test #for gcc-10 g++-10
 	sudo apt install cmake gcc-10 g++-10 build-essential libtool libboost-dev
 
