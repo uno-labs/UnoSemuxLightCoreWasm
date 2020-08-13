@@ -37,6 +37,38 @@ Then unpack the archive into your project folder.
 For use it in the browser project you have to import `UnoSemuxLightCoreWasm.js` into your HTML page: 
 
     <script src="UnoSemuxLightCoreWasm.js"></script>
+    
+
+Build
+-----    
+
+*Environment*
+
+- cmake 3.16 (for Ubuntu 18.04 nedeed [installing the latest CMake](https://graspingtech.com/upgrade-cmake/))
+- standard for the C++ - 20
+- gcc-10, g++-10
+
+	sudo add-apt-repository ppa:ubuntu-toolchain-r/test #for gcc-10 g++-10
+	sudo apt install cmake gcc-10 g++-10 build-essential libtool libboost-dev
+
+
+*Workspace*
+
+- create folders **_build/src_**
+- go into **_src_** and clone this repo
+- go to the repo folder and run
+
+
+*Dependences*
+
+[UnoSemuxLightCore](https://github.com/uno-labs/UnoSemuxLightCore.git)
+
+
+*Build*
+
+	emcmake cmake .
+	emmake make -j4
+	
 
 Documentation
 -------------
