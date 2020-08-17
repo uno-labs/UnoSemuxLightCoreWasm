@@ -3,7 +3,7 @@ QT			-= core gui widgets
 TEMPLATE	= app
 VER_MAJ		= 0
 VER_MIN		= 1
-VER_PAT		= 0
+VER_PAT		= 1
 CONFIG		+= warn_on
 DEFINES		+= UNOSEMUXLIGHTCOREWASM_LIBRARY \
 			HAVE_NETINET_IN_H \
@@ -124,7 +124,7 @@ os_windows{
 
 LIBS += -lsodium
 LIBS += -lutf8proc$$TARGET_POSTFIX
-LIBS += -lGpCore$$TARGET_POSTFIX$$GP_CORE_LIB_V
+LIBS += -lGpCore2$$TARGET_POSTFIX$$GP_CORE_LIB_V
 LIBS += -lGpCryptoCore$$TARGET_POSTFIX$$GP_CRYPTO_CORE_LIB_V
 LIBS += -lUnoSemuxLightCore$$TARGET_POSTFIX$$UNO_SEMUX_LIGHT_CORE_V
 
@@ -141,8 +141,7 @@ SOURCES += \
 	Wallet/UnoSemuxTransactionTypeWasm.cpp \
 	Wallet/UnoSemuxTransactionWasm.cpp \
 	Wallet/UnoSemuxWalletWasm.cpp \
-	WasmUtils/UnoSemuxWasmUtils.cpp \
-	main.cpp
+	WasmUtils/UnoSemuxWasmUtils.cpp
 
 HEADERS += \
 	UnoSemuxLightCoreWasm_global.hpp \

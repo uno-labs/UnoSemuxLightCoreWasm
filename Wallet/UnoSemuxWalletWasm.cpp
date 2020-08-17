@@ -76,19 +76,19 @@ emscripten::val UnoSemuxWalletWasm::delete_hd_group (const std::string aHDGroupI
     });
 }
 
-emscripten::val UnoSemuxWalletWasm::seserialize (const std::string aPassword) const
+emscripten::val UnoSemuxWalletWasm::serialize (const std::string aPassword) const
 {
     return WasmExceptionCatcher([&]()
     {
-        return emscripten::val(iWallet.VC().SeserializeHex(aPassword));
+        return emscripten::val(iWallet.VC().SerializeHex(aPassword));
     });
 }
 
-emscripten::val UnoSemuxWalletWasm::deseserialize (const std::string aDataStrHex, const std::string aPassword)
+emscripten::val UnoSemuxWalletWasm::deserialize (const std::string aDataStrHex, const std::string aPassword)
 {
     return WasmExceptionCatcher([&]()
     {
-        iWallet.V().DeseserializeHex(aDataStrHex, aPassword);
+        iWallet.V().DeserializeHex(aDataStrHex, aPassword);
         return emscripten::val::null();
     });
 }
@@ -104,7 +104,7 @@ emscripten::val UnoSemuxWalletWasm::new_wallet (void)
     });
 }
 
-emscripten::val UnoSemuxWalletWasm::new_mnemonic_pharase (void)
+emscripten::val UnoSemuxWalletWasm::new_mnemonic_phrase (void)
 {
     return WasmExceptionCatcher([&]()
     {
@@ -124,9 +124,9 @@ EMSCRIPTEN_BINDINGS(UnoSemuxWalletWasm_bind)
         .function("find_address", &UnoSemux::UnoSemuxWalletWasm::find_address)
         .function("add_hd_group", &UnoSemux::UnoSemuxWalletWasm::add_hd_group)
         .function("delete_hd_group", &UnoSemux::UnoSemuxWalletWasm::delete_hd_group)
-        .function("seserialize", &UnoSemux::UnoSemuxWalletWasm::seserialize)
-        .function("deseserialize", &UnoSemux::UnoSemuxWalletWasm::deseserialize)
+        .function("serialize", &UnoSemux::UnoSemuxWalletWasm::serialize)
+        .function("deserialize", &UnoSemux::UnoSemuxWalletWasm::deserialize)
         .class_function("new_wallet", &UnoSemux::UnoSemuxWalletWasm::new_wallet)
-        .class_function("new_mnemonic_pharase", &UnoSemux::UnoSemuxWalletWasm::new_mnemonic_pharase)
+        .class_function("new_mnemonic_phrase", &UnoSemux::UnoSemuxWalletWasm::new_mnemonic_phrase)
     ;
 };
