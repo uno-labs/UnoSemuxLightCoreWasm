@@ -104,3 +104,27 @@ EMSCRIPTEN_BINDINGS(UnoSemuxAddrWasm_bind)
 };
 
 //https://emscripten.org/docs/porting/connecting_cpp_and_javascript/embind.html
+/*
+em++
+em++
+
+Qt:
+-c
+-pipe
+-O3
+-std=gnu++20
+-s ALLOW_MEMORY_GROWTH=1
+-D__EMSCRIPTEN__
+
+Docker:
+@CMakeFiles/UnoSemuxLightCoreWasm.dir/includes_CXX.rsp
+-DNDEBUG
+-O2
+-Wno-unknown-warning-option
+-Wno-unused-command-line-argument
+-std=gnu++2a
+
+
+
+em++ -s WASM=1 -s FULL_ES2=1 -s USE_WEBGL2=1 -s NO_EXIT_RUNTIME=0 -s ERROR_ON_UNDEFINED_SYMBOLS=1 -s EXTRA_EXPORTED_RUNTIME_METHODS=["UTF16ToString","stringToUTF16"] --bind -Wl,--gc-sections -O3 -s ALLOW_MEMORY_GROWTH=1 -o ../../../Bin_tmp/Release_Browser_wasm32/UnoSemuxLightCoreWasm.js UnoSemuxAddrWasm.o UnoSemuxNetworkTypeWasm.o UnoSemuxTransactionSignWasm.o UnoSemuxTransactionTypeWasm.o UnoSemuxTransactionWasm.o UnoSemuxWalletWasm.o UnoSemuxWasmUtils.o main.o   -L./../../../Bin_tmp/Release_Browser_wasm32/ -L./../../../Bin_tmp/Release_Browser_wasm32//Plugins -lsodium -lutf8proc -lGpCore -lGpCryptoCore -lUnoSemuxLightCore
+*/

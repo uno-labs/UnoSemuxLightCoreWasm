@@ -52,9 +52,6 @@
 !*.ASM
 !*.qml
 !*.qmlproject
-!*.rst
-!*.md
-!Makefile
 
 #
 !*.jar
@@ -86,7 +83,6 @@
 
 # Don't ignore scripts
 !*.sh
-!*.bat
 
 # Don't ignore ssl
 !*.pem
@@ -146,13 +142,6 @@
 
 moc_*.cpp
 
-# Ignore docs build
-**/docs/build/*
-
-# Ignore JetBrain IDEs
-**/.idea/
-
 # Ignore CMake files
 CMakeCache.txt
 /CMakeFiles/
-

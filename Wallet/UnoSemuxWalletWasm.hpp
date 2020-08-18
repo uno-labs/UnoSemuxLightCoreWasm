@@ -22,11 +22,11 @@ public:
     emscripten::val         find_address                (const std::string aAddrStrHex);
     emscripten::val         add_hd_group                (const std::string aMnemonic, const std::string aPassword);
     emscripten::val         delete_hd_group             (const std::string aHDGroupId);
-    emscripten::val         seserialize                 (const std::string aPassword) const;
-    emscripten::val         deseserialize               (const std::string aDataStrHex, const std::string aPassword);
+    emscripten::val         serialize                   (const std::string aPassword) const;
+    emscripten::val         deserialize                 (const std::string aDataStrHex, const std::string aPassword);
 
     static emscripten::val  new_wallet                  (void);
-    static emscripten::val  new_mnemonic_pharase        (void);
+    static emscripten::val  new_mnemonic_phrase         (void);
 
 private:
     UnoSemuxWallet::SP      iWallet;
