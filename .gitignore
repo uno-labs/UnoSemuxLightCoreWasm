@@ -135,6 +135,7 @@
 !*.pg_dump
 !*.bin
 !*.scn
+!*.md
 
 # Don't ignore DIY layouts
 !*.lay6
