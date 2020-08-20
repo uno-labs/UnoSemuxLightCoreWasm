@@ -7,7 +7,7 @@ This project is a **WebAssembly** version of the [Semux light core library](http
 Look how easy it is to use:
 
     // Mnemonic phrase generation
-    var mnemonic_phrase = GetRes(Module.UnoSemuxWallet.new_mnemonic_pharase());
+    var mnemonic_phrase = GetRes(Module.UnoSemuxWallet.new_mnemonic_phrase());
     console.log("New mnemonic phrase: '" + mnemonic_phrase + "'");
 
 
